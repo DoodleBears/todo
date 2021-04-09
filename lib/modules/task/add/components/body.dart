@@ -50,7 +50,7 @@ class Body extends GetView<AddTaskController> {
     return TextFormField(
       style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18),
       validator: (value) =>
-          value.trim().isEmpty ? 'Please enter atask title' : null,
+          value.trim().isEmpty ? 'Please enter task title' : null,
       onSaved: controller.saveTitle,
       decoration: InputDecoration(
           labelText: 'Title',
