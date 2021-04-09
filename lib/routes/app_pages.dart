@@ -34,6 +34,7 @@ import 'package:todo/modules/task/task/task_page.dart';
 part './app_routes.dart';
 
 abstract class AppPages {
+  // A list of <GetPage> 来表示不同页面的 name、binding 和 route 信息等
   static final pages = [
     GetPage(
       name: Routes.LOGIN,

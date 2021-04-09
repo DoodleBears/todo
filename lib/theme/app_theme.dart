@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// App主题，包含: 颜色，字体大小等
 const kPrimaryColor = Color(0xFFc44dff);
 const kPrimaryLightColor = Color(0xFFf0d3ff);
 const primaryDarkColor = Color(0xFF8936b3);

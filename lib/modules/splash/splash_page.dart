@@ -16,22 +16,27 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<SplashController>(
+        // 当我们 builder 中的变量用  _ 下划线来表示的时候，一般是说，我们在这个builder中没用到这个传入的变量的function
         builder: (_) {
           return Column(
             children: [
               SizedBox(
                 height: 120,
               ),
-              Text('WELCOME TO HERE',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      .copyWith(fontWeight: FontWeight.bold)),
+              Text(
+                'WELCOME TO HERE',
+                // 通过 Theme.of(context) 调用App主题中的颜色，字体大小等
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    // copyWith主要作用是：复制上面的 Data，并单独修改其中某些内容
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
               SizedBox(
                 height: 120,
               ),
               Image.asset(
-                R.assetsImagesSplash,
+                R.assetsImagesSplash, //使用Class调用内置图片地址
                 fit: BoxFit.fitWidth,
               ),
             ],
