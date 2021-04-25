@@ -53,9 +53,7 @@ class Body extends GetView<LoginController> {
               )
             ],
           ),
-          SizedBox(
-            height: 60,
-          ),
+          SizedBox(height: 60),
           RoundedInputField(
             hintText: 'Your Email',
             icon: Icons.person,
@@ -64,27 +62,19 @@ class Body extends GetView<LoginController> {
           RoundedPasswordField(
             onChanged: controller.onPasswordChanged,
           ),
-          SizedBox(
-            height: 8,
-          ),
+          SizedBox(height: 8),
           RoundedButton(
             text: 'LOGIN',
             onPressed: controller.sumit,
           ),
-          SizedBox(
-            height: 12,
-          ),
+          SizedBox(height: 12),
           AlreadHaveAnAccoutCheck(
             login: true,
             onTap: () => Get.toNamed(Routes.SIGN_UP),
           ),
-          SizedBox(
-            height: 24,
-          ),
+          SizedBox(height: 24),
           OrDivider(),
-          SizedBox(
-            height: 24,
-          ),
+          SizedBox(height: 24),
           RoundedButton(
             text: 'SKIP SIGN',
             onPressed: () => Get.offNamed(Routes.TASK),

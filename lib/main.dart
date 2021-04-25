@@ -11,16 +11,20 @@ import 'package:get/get.dart';
 import 'package:todo/modules/splash/splash_binding.dart';
 import 'package:todo/modules/splash/splash_page.dart';
 import 'package:todo/routes/app_pages.dart';
+// appThemeData 的调用
 import 'package:todo/theme/app_theme.dart';
-
+// 依赖注入用，直接用过 Class 名调用 static function
 import 'utils/dependency_injection.dart';
 import 'utils/gloab_config.dart';
 
 void main() async {
+  // 当需要 Flutter 在启动初始化之前确保 Binding 已经完成时使用
   WidgetsFlutterBinding.ensureInitialized();
+  // 任何需要初始化的设置，可以放在这里进行调用
   await GloabConfig.init();
   // 初始依赖注入，包括：1.登录状态 2.网络请求功能 3.登录功能 4.数据库功能
   await DenpendencyInjection.init();
+  // GetMaterialApp 是对 MaterialApp 的一个封装，原先 MaterialApp 具有的属性，其都具有
   runApp(GetMaterialApp(
     // 取消显示右上角的 Debug mode 标志
     debugShowCheckedModeBanner: false,
@@ -29,7 +33,7 @@ void main() async {
       // Global GestureDetector that will dismiss the keyboard
       body: GestureDetector(
         onTap: () {
-          hideKeyboard(context); // 让用户可以点击其他地方取消 focus（聚焦）
+          hideKeyboard(context); // 让用户可以点击其他地方取消 focus（聚焦），用来隐藏键盘
         },
         child: child,
       ),

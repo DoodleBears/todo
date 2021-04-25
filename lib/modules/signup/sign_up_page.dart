@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:todo/modules/signup/sign_up_controller.dart';
 import 'components/body.dart';
 
-class SignUpPage extends GetView<SignUpController> {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

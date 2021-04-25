@@ -45,15 +45,15 @@ class SignUpController extends GetxController {
       Get.snackbar('Hi', 'Your _repassword not be null');
       return;
     }
-    Get.loading();
+    Get.loading(); // 跳出 loading 转圈画面
     try {
       LoginBean bean =
           await repository.register(_username, _password, _repassword);
-      Get.dismiss();
+      Get.dismiss(); // 关闭 loading 转圈画面
       LocalLoginModelRepository.saveLoginModel(bean);
       Get.offAllNamed(Routes.TASK);
     } catch (e) {
-      Get.dismiss();
+      Get.dismiss(); // 关闭 loading 转圈画面
       Get.snackbar('Error', e.message ?? "注册失败");
     }
   }

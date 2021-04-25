@@ -25,6 +25,8 @@ class TaskController extends GetxController {
 
   Future<TaskModel> _load() async {
     try {
+      // 通过 pageNum 来控制每次加载新的一批资料（对应的是 Database 的每一页
+      // Database 每一页中只有固定数量资料
       TaskModel model = await _taskRepository.getTask(pageNum: _pageNum);
       return model;
     } catch (e) {
@@ -67,6 +69,7 @@ class TaskController extends GetxController {
     }
 
     if (model.datas?.isNotEmpty == true) {
+      // 将新得到的 Database 新一页的 data 加入到 List 中
       _tasks.addAll(model.datas);
       _pageNum++;
       update();
@@ -82,6 +85,7 @@ class TaskController extends GetxController {
     Get.loading();
     try {
       bool success = await _taskRepository.deleteTask(_tasks[index].id);
+      // 判断是否 Database 成功将 task 删除，如果 success 才在 user 的 view 上做删除动作
       if (success) {
         _tasks.removeAt(index);
         update();

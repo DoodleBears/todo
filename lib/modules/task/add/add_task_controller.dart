@@ -64,10 +64,13 @@ class AddTaskController extends GetxController {
       formKey.currentState.save();
       try {
         Get.loading();
+        // await 网络请求，等待 Database 成功插入新 task
         Task task = await _taskRepository.addTask(_title,
             content: _content, date: _dateTime.format(), priority: _priority);
         Get.dismiss();
         TaskController controller = Get.find<TaskController>();
+        // 成功插入新 Task 之后才在 ListView 新增 task item
+        // 失败则会跳到 catch
         controller.addNewTask(task);
         Get.back();
       } catch (e) {

@@ -26,6 +26,11 @@ class LoginController extends GetxController {
     _password = password.trim();
   }
 
+  // 应该是 submit
+  // view 层调用 LoginController    的该 sumit function
+  // [LoginController 的 sumit]     由此 调用 Respository 中的 login function
+  // [Respository 的 login]         调用 LoginApi 的 login function
+  // [LoginApi 的 login]            通过dio，https 与 Database 做交互
   sumit() async {
     if (_username == null || _username.trim.toString().isEmpty) {
       Get.snackbar('Hi', 'Your Email not be null');
@@ -36,14 +41,14 @@ class LoginController extends GetxController {
       Get.snackbar('Hi', 'Your Password not be null');
       return;
     }
-    Get.loading();
+    Get.loading(); // 跳出 loading 转圈画面
     try {
       LoginBean bean = await repository.login(_username, _password);
-      Get.dismiss();
+      Get.dismiss(); // 关闭 loading 转圈画面
       LocalLoginModelRepository.saveLoginModel(bean);
       Get.offAllNamed(Routes.TASK);
     } catch (e) {
-      Get.dismiss();
+      Get.dismiss(); // 关闭 loading 转圈画面
       Get.snackbar('Error', e.message ?? "登录失败");
     }
   }

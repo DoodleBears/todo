@@ -6,9 +6,8 @@ import 'package:todo/modules/login/login_controller.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(
-        builder: (controller) => Scaffold(
-              body: Body(),
-            ));
+    return Scaffold(
+      body: Body(),
+    );
   }
 }
