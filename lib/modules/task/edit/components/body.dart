@@ -138,7 +138,7 @@ class Body extends GetView<EditTaskController> {
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(30)),
-      child: FlatButton(
+      child: TextButton(
         onPressed: controller.submit,
         child: Text('update',
             style: Theme.of(context)

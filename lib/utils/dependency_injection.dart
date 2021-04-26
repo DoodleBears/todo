@@ -20,6 +20,7 @@ class DenpendencyInjection {
     // 判断用户是否已经登录，登录和注册的时候会将信息存入用户设备
     // putAsync 必须 await，等待这行run完，才会往下
     // AppSpController() 之后在 LoginProvider处被调用，用于检测登录状态
+    // put the return value of builder? 将里面 method 的 return value put下去
     await Get.putAsync(() => AppSpController().init());
     // dio配置信息, 用于网络请求的初始化设置
     // putAsync 必须 await

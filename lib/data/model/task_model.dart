@@ -49,7 +49,7 @@ class TaskModel {
     curPage = json["curPage"]?.toInt();
     if (json["datas"] != null) {
       var v = json["datas"];
-      var arr0 = List<Task>();
+      var arr0 = List<Task>.empty(growable: true);
       v.forEach((v) {
         arr0.add(Task.fromJson(v));
       });
@@ -66,7 +66,7 @@ class TaskModel {
     data["curPage"] = curPage;
     if (datas != null) {
       var v = datas;
-      var arr0 = List();
+      var arr0 = List.empty(growable: true);
       v.forEach((v) {
         arr0.add(v.toJson());
       });

@@ -137,7 +137,7 @@ class Body extends GetView<AddTaskController> {
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(30)),
-      child: FlatButton(
+      child: TextButton(
         onPressed: controller.submit,
         child: Text('add task',
             style: Theme.of(context)

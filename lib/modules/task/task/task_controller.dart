@@ -18,7 +18,7 @@ class TaskController extends GetxController {
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
   int _pageNum = 1;
-  List<Task> _tasks = new List<Task>();
+  List<Task> _tasks = new List<Task>.empty(growable: true);
   List<Task> get tasks => _tasks;
 
   final TaskRepository _taskRepository = Get.find<TaskRepository>();
