@@ -10,6 +10,7 @@ import 'package:moor/moor.dart';
 import 'package:todo/data/db/task_database.dart';
 part 'task_dao.g.dart';
 
+// 使用 moor 进行 DAO（Data Access Object）在本地进行资料存取
 @UseDao(tables: [Tasks])
 class TaskDao extends DatabaseAccessor<TaskDatabase> with _$TaskDaoMixin {
   TaskDao(TaskDatabase db) : super(db);
@@ -59,6 +60,7 @@ class TaskDao extends DatabaseAccessor<TaskDatabase> with _$TaskDaoMixin {
 
   /// 批量插入
   Future<void> insertMultipleTasks(List<Task> entries) async {
+    // 插入所有 entries 到 tasks 这张 table
     await batch((batch) {
       batch.insertAll(tasks, entries);
     });

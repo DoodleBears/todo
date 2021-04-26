@@ -14,6 +14,7 @@ import 'package:todo/routes/app_pages.dart';
 import 'package:todo/utils/extension/get_extension.dart';
 
 class LoginController extends GetxController {
+  // 这里的 repository 其实就是 Model（MVC中的M）
   final LoginRepository repository = Get.find<LoginRepository>();
   String _username;
   String _password;

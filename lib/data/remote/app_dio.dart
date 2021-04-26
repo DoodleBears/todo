@@ -12,6 +12,7 @@ const _defaultSendTimeout = Duration.millisecondsPerMinute;
 const _defaultReceiveTimeout = Duration.millisecondsPerMinute;
 
 class AppDio with DioMixin implements Dio {
+  // DioConfig.of() 实际就是 Get.find<DioConfig>()
   DioConfig _dioConfig = DioConfig.of();
   AppDio._([BaseOptions options]) {
     options ??= BaseOptions(
@@ -31,7 +32,8 @@ class AppDio with DioMixin implements Dio {
       ),
     ).interceptor);
     //Cookie管理
-    interceptors.add(CookieManager(PersistCookieJar(dir: _dioConfig.cookiesPath)));
+    interceptors
+        .add(CookieManager(PersistCookieJar(dir: _dioConfig.cookiesPath)));
 
     if (kDebugMode) {
       interceptors.add(LogInterceptor(
@@ -49,7 +51,8 @@ class AppDio with DioMixin implements Dio {
   }
 
   setProxy(String proxy) {
-    (httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
+    (httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
       // config the http client
       client.findProxy = (uri) {
         //proxy all request to localhost:8888

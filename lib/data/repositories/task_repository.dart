@@ -15,24 +15,36 @@ import 'package:todo/data/model/task_model.dart';
 import 'package:todo/data/providers/login_provider.dart';
 
 class TaskRepository {
+  // api 用于网络请求
   final TaskApi api = Get.find<TaskApi>();
+  // DAO 用于本地存储，数据持久化
+  // TaskDao 在一开始 dependency_injection.dary
+  // 通过 Get.put(TaskDaoController().init()) 注入
   final TaskDao taskDao = Get.find<TaskDao>();
+  // loginProvider 用来判断是否登录（登录状态）
   final LoginProvider loginProvider = Get.find<LoginProvider>();
 
   Future<TaskModel> getTask({int pageNum = 1}) async {
+    // 在登录状态下，从 remote Database 获取资料，并存入 local Database
     if (loginProvider.isLogin()) {
       try {
+        // 网络请求 remote Database 的 data
         TaskModel model = await api.getTasks(pageNum: pageNum);
+        // 如果 data 不为空，inset 到本地 local Database
         if (model.datas.isNotEmpty == true)
           await taskDao.insertMultipleTasks(model.datas);
       } catch (e) {
         print('TaskRepository==getTask:$e');
       }
     }
+    // 有无网络连接，都从 local Database 取得资料（LINE消息等都会存在本机，即使断网也能打开）
+    // 这就是所谓的缓存文件，注意这边调用的是 taskDao，上面try中，先调用 api，在调用 taskDao，插入本地
     var data = await taskDao.getTasks(20, offset: (pageNum - 1) * 20);
     TaskModel model = TaskModel(
         curPage: pageNum,
         datas: data,
+        // over 判断条件：数据量小于20笔，则可以知道 Database 中一个page 有 20笔 data
+        // 若回传的 data 长度不足20 说明这应该是最后一页了
         over: ((data?.length ?? 0 < 20) == true));
     return model;
   }
@@ -51,7 +63,7 @@ class TaskRepository {
     TasksCompanion tasksCompanion = TasksCompanion(
       title: Value(task?.title ?? title),
       content: Value(task?.content ?? content),
-      id: task?.id==null ? Value<int>.absent():Value(task?.id),
+      id: task?.id == null ? Value<int>.absent() : Value(task?.id),
       date: Value(task?.date ??
           DateTime.parse(task?.dateStr ?? date).microsecondsSinceEpoch),
       dateStr: Value(task?.dateStr ?? date),

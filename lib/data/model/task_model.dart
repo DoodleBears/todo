@@ -44,6 +44,7 @@ class TaskModel {
     this.size,
     this.total,
   });
+  // fromJson 用来将 json 转至对应的 Bean（object Model）
   TaskModel.fromJson(Map<String, dynamic> json) {
     curPage = json["curPage"]?.toInt();
     if (json["datas"] != null) {

@@ -17,6 +17,7 @@ class LoginApi {
   final DioClient _dio = Get.find<DioClient>();
 
   Future<LoginBean> login(String username, String password) async {
+    // dio 的功能，类似于 Retrofit
     AppResponse appResponse = await _dio.post(_login, queryParameters: {
       "username": username,
       "password": password,

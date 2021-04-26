@@ -11,6 +11,7 @@ import 'package:todo/data/api/login_api.dart';
 import 'package:todo/data/model/login_bean.dart';
 
 class LoginRepository {
+  // 这里的 api 其实是作者将 网络请求和 Model 层分开，单独来写
   final LoginApi api = Get.find<LoginApi>();
 
   Future<LoginBean> login(String username, String password) {
