@@ -10,6 +10,10 @@ class LocalLoginModelRepository {
 
   // 登录和注册之后都会调用下面这个 Function，用来存储用户登录信息在用户设备的 disk 上，方便下次自动登录
   static saveLoginModel(LoginBean bean) {
+    // 在 main.dart 中调用 DenpendencyInjection.init() 后
+    // 调用 Get.putAsync(() => AppSpController().init())
+    // 最终调用 AppSpController().init() 结果会回传 SharedPreferences 的 Object
+    // 此时 Get.putAsync() 便把这个 Object 作为 Controller put 到 Hashmap 中
     SharedPreferences sp = Get.find<SharedPreferences>();
     sp.setString(keyLoginModel, jsonEncode(bean.toJson()));
   }
