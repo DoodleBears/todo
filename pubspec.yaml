@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -33,18 +33,18 @@ dependencies:
   get: ^3.21.2
   google_fonts: ^1.1.1
   moor: ^3.4.0
-  sqlite3_flutter_libs: ^0.4.0
   path: ^1.7.0
   path_provider: ^1.6.24
   pull_to_refresh: ^1.6.3
   shared_preferences: ^0.5.12+4
+  sqlite3_flutter_libs: ^0.4.0
   table_calendar: ^2.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.10.7
-  moor_generator:
+  moor_generator: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

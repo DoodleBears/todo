@@ -46,7 +46,11 @@ class LoginController extends GetxController {
     try {
       LoginBean bean = await repository.login(_username, _password);
       Get.dismiss(); // 关闭 loading 转圈画面
+      // Class Name call
+      //** 登陆成功后, 将用户的登陆信息存到本地, 用SharedPreference */
       LocalLoginModelRepository.saveLoginModel(bean);
+
+      /// 清空 stack, pop 掉所有的page, 并 push `Routes.TASK` 入 stack
       Get.offAllNamed(Routes.TASK);
     } catch (e) {
       Get.dismiss(); // 关闭 loading 转圈画面

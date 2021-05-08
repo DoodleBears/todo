@@ -20,8 +20,9 @@ class DenpendencyInjection {
     // 判断用户是否已经登录，登录和注册的时候会将信息存入用户设备
     // AppSpController() 之后在 LoginProvider处被调用，用于检测登录状态
     // putAsync 必须 await，等待这行run完，才会往下
-    // await tells flutter is to wait at that line of code, until the function has returned a value
-    // 将 putAsync() 里面 function 的 return value, put 下去 (作为 Controller 放到 Hashmap 里面)
+    // put() 系列都是用来将某个 object(很多时候是 Controller)等放入 Hashmap, 当需要用到的时候可以 find()出来
+    // put the return value of builder? 将里面 method 的 return value put下去
+    /// 在下面这一行是 put的便是 `SharedPreference`, 在 `local_login_model_reposity.dart` 被用到
     await Get.putAsync(() => AppSpController().init());
     // dio配置信息, 用于网络请求的初始化设置
     // putAsync 必须 await

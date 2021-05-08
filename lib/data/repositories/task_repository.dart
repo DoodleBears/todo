@@ -30,14 +30,17 @@ class TaskRepository {
       try {
         // 网络请求 remote Database 的 data
         TaskModel model = await api.getTasks(pageNum: pageNum);
-        // 如果 data 不为空，inset 到本地 local Database
+        //** 如果 data 不为空,
+        //** 就 insert 到本地 local DB
+        //** 然后下面的 var data = await taskDao.getTasks() 再从local取得资料
         if (model.datas.isNotEmpty == true)
           await taskDao.insertMultipleTasks(model.datas);
       } catch (e) {
         print('TaskRepository==getTask:$e');
       }
     }
-    // 有无网络连接，都从 local Database 取得资料（LINE消息等都会存在本机，即使断网也能打开）
+    // 有无网络连接，都从 local DB 取得资料（LINE消息等都会存在本机，即使断网也能打开）
+    //** 如果有网络, 再上面会先从 remote DB 取得资料, 然后insert到 local DB */
     // 这就是所谓的缓存文件，注意这边调用的是 taskDao，上面try中，先调用 api，在调用 taskDao，插入本地
     var data = await taskDao.getTasks(20, offset: (pageNum - 1) * 20);
     TaskModel model = TaskModel(

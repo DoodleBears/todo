@@ -19,7 +19,8 @@ class LocalLoginModelRepository {
   }
 
   static LoginBean getLoginModel() {
-    // 此时之前异步put的putAsync() 的 SharedPreferences 被find()调用，
+    // 此时之前Dependency_injection.dart 的
+    /// `await Get.putAsync(() => AppSpController().init())` 的 SharedPreferences 被find()调用，
     SharedPreferences sp = Get.find<SharedPreferences>();
     try {
       // 试图从sp中getString，看看有没有这个key-value，pair，如果没有说明之前未登录过（没有存储登录状态到 disk）
